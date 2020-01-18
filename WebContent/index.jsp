@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-Welcome to Payment Invoice
+<form action="invo">
+<input type="submit">
+</form>
 </body>
 </html>
