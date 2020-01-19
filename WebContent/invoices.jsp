@@ -4,6 +4,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        <style>
+        .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+        </style>
     </head>
     <body>
     <jsp:include page='header.jsp'/>
@@ -44,5 +57,6 @@ System.out.println("a");
 
 %>
 </table>
+<a href="payment.jsp"><input  type="submit" value="Continue to checkout" class="btn"></a>
 </body>
 </html>
