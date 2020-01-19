@@ -26,6 +26,9 @@ import repositories.PaymentRepository;
 @WebServlet("/Payment")
 public class Payment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static final String keyId = "rzp_test_25DvslaTSjz9fD";
+	private static final String secretKey = "cRLhxt1N6BGqfsdGylV3nPLf";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -58,82 +61,54 @@ public class Payment extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.print("asd");
-		String amount = request.getParameter("amount");
+		Long amount = Long.parseLong(request.getParameter("amount"));
+		System.out.println(amount);
 		String currency="INR";
 		String invoiceId="I1011";
 		String paymentCapture = "1";
 		
-		String credential = Credentials.basic("rzp_test_25DvslaTSjz9fD", "cRLhxt1N6BGqfsdGylV3nPLf");
+		String credential = Credentials.basic(keyId, secretKey);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("amount", amount);
-	       jsonObject.put("currency", currency);
-	       jsonObject.put("invoiceId", invoiceId);
-	       jsonObject.put("paymentCapture", paymentCapture);
+	    jsonObject.put("currency", currency);
+//	       jsonObject.put("invoiceId", invoiceId);
+//	       jsonObject.put("paymentCapture", paymentCapture);
        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 		
        RequestBody body = RequestBody.create(JSON, jsonObject.toString());
         
-        Request requestObject = new Request.Builder()
-                .url("https://api.razorpay.com/v1/orders")
-                .addHeader("Authorization", credential)
-                .post(body)
-                .build();
+		Request requestObject = new Request.Builder()
+		        .url("https://api.razorpay.com/v1/orders")
+		        .addHeader("Authorization", credential)
+		        .post(body)
+		        .build();
         
         Response api_response = null;
         OkHttpClient httpClient = new OkHttpClient();
         String api_response_string = "";
+        
+        RazorPayOrderModel model=null;
         try {
         	api_response = httpClient.newCall(requestObject).execute();
-            String resStr = api_response.body().string();
-            System.out.println(resStr);
-            if (!api_response.isSuccessful()) throw new IOException("Unexpected code " + response);
-
-            // Get response body
-            System.out.println(api_response.body().string());
-            api_response_string = api_response.body().string();
+        	if (!api_response.isSuccessful()) throw new IOException("Unexpected code " + response);
+        	// Get response body
+        	api_response_string = api_response.body().string();
+            
+            System.out.println(api_response_string);
+            Gson g = new Gson();
+            model = g.fromJson(api_response_string, RazorPayOrderModel.class);
+            System.out.println(model.getCreated_at());
+            
+            PaymentRepository pr = new PaymentRepository();
+            pr.saveRazorPayResponse();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch(Exception e) {
+        	e.printStackTrace();
         }
         
-
-		
-//		URL url = new URL("https://api.razorpay.com/v1/orders");
-//		HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
-//        conn.setRequestMethod("POST");
-//        
-//        conn.setRequestProperty("Accept", "application/json");
-//        String username="rzp_test_25DvslaTSjz9fD";
-//        String password="cRLhxt1N6BGqfsdGylV3nPLf";
-//        String authStr = Base64.getEncoder()
-//                .encodeToString((username+":"+password).getBytes());
-        
-    	//setting Authorization header
-//        conn.setRequestProperty("Authorization", "Basic " + authStr);
-//        int responseCode = conn.getResponseCode();
-//        if (responseCode != 200) {
-//            throw new RuntimeException("Request Failed with Error code : "
-//                          + responseCode);
-//        }
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
-//        String output = null;  
-//        StringBuilder strBuf = new StringBuilder();  
-//        while ((output = reader.readLine()) != null)  
-//            strBuf.append(output); 
-//        
-        
-        
-        System.out.println(api_response_string);
-        Gson g = new Gson();
-        RazorPayOrderModel model = g.fromJson(api_response_string.toString(), RazorPayOrderModel.class);
-        System.out.println(model.getCreated_at());
-        
-        PaymentRepository pr = new PaymentRepository();
-        pr.saveRazorPayResponse();
-        
-		response.getWriter().append("{\"message\": \"Success"+api_response_string.toString()+"\"}");
-
-		
+//		response.getWriter().append("{\"message\": \"Success"+api_response_string.toString()+"\"}");
+		response.getWriter().append(model.getId());
 	}
 
 }
