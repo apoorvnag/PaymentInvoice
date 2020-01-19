@@ -25,43 +25,43 @@ public class maildata extends HttpServlet {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/g","root","AmitKaushik$");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/apn","root","AmitKaushik$");
 			Statement stmt=conn.createStatement();
-			 String sql = "SELECT * from users";
-			 
-			 //please input the querrry;
-			String due="Select duedate from invoices";
-			 	      
-			ResultSet rs = stmt.executeQuery(sql);
-		     ResultSet r = stmt.executeQuery(due);
-		      
-		     int invoice_id ;
-		        String email ;
-		        Date due_date ;
-		         
-		      while(rs.next()){
-		        
-		         invoice_id  = rs.getInt("id");
-		         email  =rs.getString("username");
-		        due_date = rs.getDate("due_date");
-		         
-		      }
-		      rs.close();
 			
-		      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		      Date cur_date= new java.util.Date();
-//		        sdf.format(due_date);
-//		        sdf.format(cur_date);
-//		      if (cur_date.compareTo(due_date) > 0) {
-//		            javamail.msend(email);
-		        
-//		        }
+						
+			String usersids="select id from users"; //taking ids of all users
+			ResultSet rs0= stmt.executeQuery(usersids);//getting userids
 			
-			
+			 Date cur_date= new java.util.Date();//current date
+			 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			 sdf.format(cur_date);//formatting current date
+			while(rs0.next()) {			//running loop for users
+				
+				int u= rs0.getInt("id"); 
+				String user="select username form users where users.id='u'";//getting username for userid
+				String over="select due_date from invoices where invoices.user_id='u'"; //getting his all invoice duedate
+				ResultSet rs2_1 = stmt.executeQuery(over); //selecting due date 
+				
+				while(rs2_1.next()) {
+					Date d=rs2_1.getDate("due_date"); //selecting each due date at a time
+					
+					sdf.format(d); //formatting date
+				    if(d.compareTo(cur_date)<0) { //comparing to current date
+				    	
+				    	String sub="your invoice over its due date";
+				    	String cont=" you are requested to pay your invoice on time else interst wwill be charges accordingly.";
+				    	javamail.msend(user,sub,cont);
+				    	
+				    							}			
+									}
+				rs2_1.close();
+			    			}
+			rs0.close();
+		 	      
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-		}
+							}
 	
 	}
 
