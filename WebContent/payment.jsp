@@ -17,8 +17,13 @@ User Id: <input type='hidden' value='1' id='userid'/>
 </form>
 
 
-
-<form name="razorpayForm" action="http://localhost:8080/PaymentInvoice/payment_success.jsp" method="POST">
+<%
+String username = (String)session.getAttribute("username");
+if (username.isEmpty()){
+	username="user";
+}
+%>
+<form style='display: hidden' name="razorpayForm" action="http://localhost:8080/PaymentInvoice/payment_success.jsp" method="POST">
 <script
     src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="rzp_test_25DvslaTSjz9fD"
@@ -29,8 +34,8 @@ User Id: <input type='hidden' value='1' id='userid'/>
     data-name="Adani Ports and SEZ"
     data-description="Ports and Logistics"
     data-image="https://www.adaniports.com/-/media/E22DAD7A3F5B4EF484A6D41626D9BEB4.ashx"
-    data-prefill.name="Gaurav Kumar"
-    data-prefill.email="gaurav.kumar@example.com"
+    data-prefill.name="<%=username %>"
+    data-prefill.email="<%=username %>"
     data-prefill.contact="9999999999"
     data-theme.color="#F37254"
     id='myscript'
