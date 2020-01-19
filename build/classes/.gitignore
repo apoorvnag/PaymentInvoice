@@ -1,3 +1,5 @@
 /apis/
 /mail_jdbc/
 /migrations/
+/repositories/
+/models/

@@ -100,7 +100,8 @@ public class Payment extends HttpServlet {
             System.out.println(model.getCreated_at());
             
             PaymentRepository pr = new PaymentRepository();
-            pr.saveRazorPayResponse();
+            pr.saveRazorPayResponse(model);
+            pr.savePayment(model);
         } catch (IOException e) {
             e.printStackTrace();
         } catch(Exception e) {
@@ -109,7 +110,7 @@ public class Payment extends HttpServlet {
         
 		response.getWriter().append(
 				"{"+
-					"\"message\": \"Success!!\""+","+
+					"\"message\": \"Success!\""+","+
 					"\"orderId\": \""+model.getId()+"\","+
 					"\"amount\": "+model.getAmount()+","+
 					"\"currency\": \""+model.getCurrency()+"\""+

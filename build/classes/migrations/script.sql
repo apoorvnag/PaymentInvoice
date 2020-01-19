@@ -63,7 +63,7 @@ CREATE TABLE `payment_logs` (
   `payment_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `invoice_id` int(11) DEFAULT NULL,
-  `order_id` int(11) DEFAULT NULL,
+  `order_id` varchar(255) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -78,7 +78,7 @@ DROP TABLE IF EXISTS `payments`;
 CREATE TABLE `payments` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `txn_id` bigint(22) DEFAULT NULL,
-  `order_id` bigint(22) DEFAULT NULL,
+  `order_id` varchar(255) DEFAULT NULL,
   `amount` bigint(22) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   `invoice_id` int(11) DEFAULT NULL,

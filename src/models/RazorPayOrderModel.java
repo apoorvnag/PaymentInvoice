@@ -3,6 +3,7 @@ package models;
 
 public class RazorPayOrderModel{
 	private String id;
+	private String razorpay_id;
 	private String entity;
 	private long amount;
 	private long amount_paid;
@@ -10,7 +11,7 @@ public class RazorPayOrderModel{
 	private String currency;
 	private String receipt;
 	private String offer_id;
-	private String created;
+	private String status;
 	private int attempts;
 	private String[] notes;
 	private String created_at;
@@ -62,11 +63,11 @@ public class RazorPayOrderModel{
 	public void setOffer_id(String offer_id) {
 		this.offer_id = offer_id;
 	}
-	public String getCreated() {
-		return created;
+	public String getStatus() {
+		return status;
 	}
-	public void setCreated(String created) {
-		this.created = created;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public int getAttempts() {
 		return attempts;
@@ -85,6 +86,12 @@ public class RazorPayOrderModel{
 	}
 	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
+	}
+	public String getRazorpay_id() {
+		return razorpay_id;
+	}
+	public void setRazorpay_id(String razorpay_id) {
+		this.razorpay_id = razorpay_id;
 	}
 	
 }
