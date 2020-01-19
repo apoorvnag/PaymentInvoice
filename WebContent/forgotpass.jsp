@@ -25,7 +25,9 @@ String Countrow = rs.getString(1);
 System.out.println(Countrow);
 /*if(Countrow.equals(1)){
 	System.out.println(Countrow);*/
-	mail_jdbc.javamail.msend(username,"forgot password","This is your new password");
+	
+	String temp = Long.toHexString(Double.doubleToLongBits(Math.random()));
+	mail_jdbc.javamail.msend(username,"forgot password","This is your new password is  "+temp);
 
 /*
 jm.msend(username,"forgot password","This is your new password");
