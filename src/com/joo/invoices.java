@@ -16,8 +16,7 @@ public class invoices extends HttpServlet
 /**
  * @see HttpServlet#HttpServlet()
  */
-public void InvoiceDashboard() {
-	InvoiceDashboard();
+public invoices() {
     super();
 }
 public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
@@ -43,7 +42,6 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
 	           out.println("</html></body>");
 	           con.close();
 	           
-	    	 PrintWriter out = res.getWriter();
 	    	 re.next();
 	    	 out.println(re.getInt(1)+" "+ re.getInt(2)+ " "+ re.getString(3)+" "+ re.getString(4)
 	    	 +" "+re.getInt(5)+""+re.getInt(6));
@@ -51,9 +49,6 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
