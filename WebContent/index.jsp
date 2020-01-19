@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="invo">
+<form action="invoices">
 <input type="submit">
 </form>
 </body>
