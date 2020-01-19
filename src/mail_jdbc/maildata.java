@@ -23,10 +23,13 @@ public class maildata extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Connection conn=null;
+		Statement stmt;
+		Statement stm;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/apn","root","AmitKaushik$");
-			Statement stmt=conn.createStatement();
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/g1","root","AmitKaushik$");
+			stmt=conn.createStatement();
 			
 						
 			String usersids="select id from users"; //taking ids of all users
@@ -40,7 +43,8 @@ public class maildata extends HttpServlet {
 				int u= rs0.getInt("id"); 
 				String user="select username form users where users.id='u'";//getting username for userid
 				String over="select due_date from invoices where invoices.user_id='u'"; //getting his all invoice duedate
-				ResultSet rs2_1 = stmt.executeQuery(over); //selecting due date 
+				stm=conn.createStatement();
+				ResultSet rs2_1 = stm.executeQuery(over); //selecting due date 
 				
 				while(rs2_1.next()) {
 					Date d=rs2_1.getDate("due_date"); //selecting each due date at a time
@@ -59,10 +63,24 @@ public class maildata extends HttpServlet {
 			rs0.close();
 		 	      
 		}
-		catch(Exception e) {
-			e.printStackTrace();
-							}
-	
+		catch(SQLException se){
+									//Handle errors for JDBC
+		      se.printStackTrace();
+		   }
+		catch (Exception e)
+		{
+		e.printStackTrace();
+
+		}
+		finally{
+		 
+		      try{
+		         if(conn!=null)
+		            conn.close();
+		         }catch(SQLException se){
+		         se.printStackTrace();
+		      }//end finally try
+		   }
 	}
 
 }
