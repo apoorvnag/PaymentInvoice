@@ -133,7 +133,7 @@ CREATE TABLE `users` (
   `password` text,
   `verification_key` text,
   `handle` varchar(255) DEFAULT NULL,
-  `contact` int(20) DEFAULT NULL,
+  `contact` bigint(20) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
