@@ -15,7 +15,7 @@ System.out.println("a");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/g","root","AmitKaushik$");
 	    	 Statement st = con.createStatement();
 	    	 ResultSet re = st.executeQuery("Select * from invoices");
-	           out.println("<tr><th>EmId</th><th>user</th><th>Status</th><tr>");
+	           out.println("<tr><th>EmId</th><th>user</th><th>Status</th><th>Due Date</th><th>Shipment ID</th><th>TOS Invoice ID</th><th>Amount</th><tr>");
 	           while (re.next())
 	           {
 	               int n = re.getInt("id");
