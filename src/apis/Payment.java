@@ -1,6 +1,12 @@
 package apis;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Base64;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +53,36 @@ public class Payment extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.print("asd");
+		String amount = request.getParameter("amount");
+		String currency="INR";
+		String invoiceId="I101";
+		int paymentCapture = 1;
+		URL url = new URL("https://api.razorpay.com/v1/orders");
+		HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        String username="rzp_test_25DvslaTSjz9fD";
+        String password="cRLhxt1N6BGqfsdGylV3nPLf";
+        String authStr = Base64.getEncoder()
+                .encodeToString((username+":"+password).getBytes());
+    	//setting Authorization header
+        conn.setRequestProperty("Authorization", "Basic " + authStr);
+        
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("HTTP GET Request Failed with Error code : "
+                          + conn.getResponseCode());
+        }
+        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
+        String output = null;  
+        StringBuilder strBuf = new StringBuilder();  
+        while ((output = reader.readLine()) != null)  
+            strBuf.append(output); 
+        System.out.println(strBuf);
+        
+		response.getWriter().append("{\"message\": \"Success"+strBuf.toString()+"\"}");
+
+		
 	}
 
 }

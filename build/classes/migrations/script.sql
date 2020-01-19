@@ -153,6 +153,25 @@ CREATE TABLE `wallet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+DROP TABLE IF EXISTS `razorpay_responses`;
+
+CREATE TABLE `razorpay_responses` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `razorpay_id` text,
+  `entity` varchar(255) DEFAULT NULL,
+  `amount` bigint(20) DEFAULT NULL,
+  `amount_paid` bigint(11) DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `receipt` varchar(255) DEFAULT NULL,
+  `offer_id` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `attempts` int(11) DEFAULT NULL,
+  `notes` text,
+  `created_at` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
@@ -161,3 +180,32 @@ CREATE TABLE `wallet` (
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+# Insertion of table Company
+# ------------------------------------------------------------
+
+insert into company values (1001,'Saudi Aramco','Dhahran Saudi Arabia',80011611);
+insert into company values (1002,'Microsoft','Washington USA',71237123)
+insert into company values (1003,'Apple','California USA',703257032);
+insert into company values (1004,'Amazon','Washington USA',67456745);
+insert into company values (1005,'Alphabet','California USA',521452145);
+
+# Insertion of table invoices
+# ------------------------------------------------------------
+
+insert into invoices values (1,101,'pending','2020-02-11',10001,9999);
+insert into invoices values (2,102,'pending','2020-02-12',10002,9998);
+insert into invoices values (3,103,'pending','2020-02-13',10003,9997);
+insert into invoices values (4,104,'pending','2020-02-14',10004,9996);
+insert into invoices values (5,105,'pending','2020-02-15',10005,9995);
+
+# Insertion of table products
+# ------------------------------------------------------------
+
+insert into products values (4001,1,1,201,'1963 Ferrari 250 GTO',1,10,10);
+insert into products values (4002,1,1,202,'The Bugatti La Voiture Noire',2,15,30);
+insert into products values (4003,1,1,203,'Passion Diamond Shoes',5,5,25);
+insert into products values (4003,1,1,204,'Artwork Of A Dead Shark',1,100,100);
+insert into products values (4003,1,1,205,'The History Supreme Yacht',1,34,34);

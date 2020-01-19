@@ -10,7 +10,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="src/jars/gson-2.3.1.jar"/>
 	<classpathentry kind="lib" path="src/jars/javax.servlet-3.0.jar"/>
-<<<<<<< Updated upstream
 	<classpathentry kind="lib" path="src/razorpay_jars/commons-codec-1.11.jar" sourcepath="/Users/apoorv/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11-sources.jar"/>
 	<classpathentry kind="lib" path="src/razorpay_jars/commons-lang3-3.7.jar"/>
 	<classpathentry kind="lib" path="src/razorpay_jars/commons-text-1.3.jar"/>
@@ -19,9 +18,7 @@
 	<classpathentry kind="lib" path="src/razorpay_jars/okhttp-3.10.0.jar"/>
 	<classpathentry kind="lib" path="src/razorpay_jars/okio-1.14.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/BTN-User/Downloads/mysql-connector-java-5.1.28.jar"/>
-	<classpathentry kind="lib" path="C:/Users/BTN-User/Downloads/mysql-connector-java-8.0.19/mysql-connector-java-8.0.19.jar"/>
->>>>>>> Stashed changes
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

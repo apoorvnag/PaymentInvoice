@@ -153,6 +153,25 @@ CREATE TABLE `wallet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+DROP TABLE IF EXISTS `razorpay_responses`;
+
+CREATE TABLE `razorpay_responses` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `razorpay_id` text,
+  `entity` varchar(255) DEFAULT NULL,
+  `amount` bigint(20) DEFAULT NULL,
+  `amount_paid` bigint(11) DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `receipt` varchar(255) DEFAULT NULL,
+  `offer_id` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `attempts` int(11) DEFAULT NULL,
+  `notes` text,
+  `created_at` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
