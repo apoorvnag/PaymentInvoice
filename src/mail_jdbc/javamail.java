@@ -8,12 +8,12 @@ import java.util.Properties;
 public class javamail {
 
     	 
-public static void msend(String to){  
-        final String username = "kanyal@gmail.com";//input your email address
-        final String password = "";//input your password
+public static void msend(String to,String subject,String msg){  
+        final String username = "adaniportsez@gmail.com";//input your email address
+        final String password = "AmitkaushiK$";//input your password
 
         Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.gmail.com");
+	prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true"); //tls
@@ -33,10 +33,10 @@ public static void msend(String to){
                     Message.RecipientType.TO,
                     new InternetAddress(to)
             );
-            message.setSubject("Testing Gmail TLS");
-            message.setText("sir,"
-                    + "\n\n your invoice has over your due date .");
-
+            message.setSubject(subject);
+            
+            message.setText(msg);
+          
             Transport.send(message);
 
             System.out.println("Done");
