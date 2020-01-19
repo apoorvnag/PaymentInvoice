@@ -28,7 +28,7 @@ public class maildata extends HttpServlet {
 		Statement stm,st;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/g1","root","AmitKaushik$");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/apn","root","AmitKaushik$");
 			stmt=conn.createStatement();
 			
 						
