@@ -95,6 +95,7 @@ public class Payment extends HttpServlet {
         try {
         	api_response = httpClient.newCall(requestObject).execute();
             String resStr = api_response.body().string();
+            System.out.println(resStr);
             if (!api_response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
             // Get response body
