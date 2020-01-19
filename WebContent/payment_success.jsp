@@ -16,7 +16,7 @@
         <h3>Dear, Faisal khan</h3>
         <p style="font-size:20px;color:#5C5C5C;">Thank you for the payment made.
 Please go to your email now and check the payment receipt sent.</p>
-        <a href="" class="btn btn-success">     Log in      </a>
+        <a href="index.jsp" class="btn btn-success">     Go to Home      </a>
     <br><br>
         </div>
         
