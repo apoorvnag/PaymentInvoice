@@ -12,16 +12,7 @@ import models.RazorPayOrderModel;
 
 public class PaymentRepository {
 	public void saveRazorPayResponse(RazorPayOrderModel model) {
-		System.out.println("called");
-		System.out.println(model.getId());
-		System.out.println(model.getAmount());
-		System.out.println(model.getCreated_at());
-		System.out.println(model.getCreated_at());
-		System.out.println(model.getCurrency());
-		System.out.println(model.getOffer_id());
-		System.out.println(model.getEntity());
-		System.out.println(model.getAmount_paid());
-		System.out.println(model.getAmount_due());
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			

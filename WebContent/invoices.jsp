@@ -24,7 +24,7 @@ System.out.println("a");
 	               String d= re.getString("due_date");
 	               int e = re.getInt("shipment_id");
 	               int f = re.getInt("tos_invoice_id");
-	               int a= re.getInt("amount")
+	               int a= re.getInt("amount");
 	               out.println("<tr><td>" + n + "</td><td>" + s + "</td><td>" + nm + "</td><td>"
 	               + d + "</td><td>"+e+"</td><td"+f +"</td><td>"+a+"</td></tr>");
 	           }
