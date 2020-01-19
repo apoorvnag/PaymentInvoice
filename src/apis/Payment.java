@@ -14,6 +14,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.digest.Sha2Crypt;
+import org.json.JSONObject;
+
+import com.google.gson.Gson;
+
+import models.RazorPayOrderModel;
+import models.RazorPayReponseModel;
+import okhttp3.Credentials;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import repositories.PaymentRepository;
 
 /**
  * Servlet implementation class Payment
@@ -56,31 +70,76 @@ public class Payment extends HttpServlet {
 		System.out.print("asd");
 		String amount = request.getParameter("amount");
 		String currency="INR";
-		String invoiceId="I101";
-		int paymentCapture = 1;
-		URL url = new URL("https://api.razorpay.com/v1/orders");
-		HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Accept", "application/json");
-        String username="rzp_test_25DvslaTSjz9fD";
-        String password="cRLhxt1N6BGqfsdGylV3nPLf";
-        String authStr = Base64.getEncoder()
-                .encodeToString((username+":"+password).getBytes());
-    	//setting Authorization header
-        conn.setRequestProperty("Authorization", "Basic " + authStr);
+		String invoiceId="I1011";
+		String paymentCapture = "1";
+		
+		String credential = Credentials.basic("rzp_test_25DvslaTSjz9fD", "cRLhxt1N6BGqfsdGylV3nPLf");
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("amount", amount);
+	       jsonObject.put("currency", currency);
+	       jsonObject.put("invoiceId", invoiceId);
+	       jsonObject.put("paymentCapture", paymentCapture);
+       MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+		
+       RequestBody body = RequestBody.create(JSON, jsonObject.toString());
         
-        if (conn.getResponseCode() != 200) {
-            throw new RuntimeException("HTTP GET Request Failed with Error code : "
-                          + conn.getResponseCode());
+        Request requestObject = new Request.Builder()
+                .url("https://api.razorpay.com/v1/orders")
+                .addHeader("Authorization", credential)
+                .post(body)
+                .build();
+        
+        Response api_response = null;
+        OkHttpClient httpClient = new OkHttpClient();
+        String api_response_string = "";
+        try {
+        	api_response = httpClient.newCall(requestObject).execute();
+            String resStr = api_response.body().string();
+            if (!api_response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+            // Get response body
+            System.out.println(api_response.body().string());
+            api_response_string = api_response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
-        String output = null;  
-        StringBuilder strBuf = new StringBuilder();  
-        while ((output = reader.readLine()) != null)  
-            strBuf.append(output); 
-        System.out.println(strBuf);
         
-		response.getWriter().append("{\"message\": \"Success"+strBuf.toString()+"\"}");
+
+		
+//		URL url = new URL("https://api.razorpay.com/v1/orders");
+//		HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
+//        conn.setRequestMethod("POST");
+//        
+//        conn.setRequestProperty("Accept", "application/json");
+//        String username="rzp_test_25DvslaTSjz9fD";
+//        String password="cRLhxt1N6BGqfsdGylV3nPLf";
+//        String authStr = Base64.getEncoder()
+//                .encodeToString((username+":"+password).getBytes());
+        
+    	//setting Authorization header
+//        conn.setRequestProperty("Authorization", "Basic " + authStr);
+//        int responseCode = conn.getResponseCode();
+//        if (responseCode != 200) {
+//            throw new RuntimeException("Request Failed with Error code : "
+//                          + responseCode);
+//        }
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
+//        String output = null;  
+//        StringBuilder strBuf = new StringBuilder();  
+//        while ((output = reader.readLine()) != null)  
+//            strBuf.append(output); 
+//        
+        
+        
+        System.out.println(api_response_string);
+        Gson g = new Gson();
+        RazorPayOrderModel model = g.fromJson(api_response_string.toString(), RazorPayOrderModel.class);
+        System.out.println(model.getCreated_at());
+        
+        PaymentRepository pr = new PaymentRepository();
+        pr.saveRazorPayResponse();
+        
+		response.getWriter().append("{\"message\": \"Success"+api_response_string.toString()+"\"}");
 
 		
 	}
