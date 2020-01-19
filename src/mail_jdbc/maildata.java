@@ -25,14 +25,14 @@ public class maildata extends HttpServlet {
 		
 		Connection conn=null;
 		Statement stmt;
-		Statement stm,st;
+		Statement stm;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/apn","root","AmitKaushik$");
 			stmt=conn.createStatement();
 			
 						
-			String usersids="select id from users"; //taking ids of all users
+			String usersids="select id,username from users"; //taking ids of all users
 			ResultSet rs0= stmt.executeQuery(usersids);//getting userids
 			
 			 Date cur_date= new java.util.Date();//current date
@@ -43,14 +43,8 @@ public class maildata extends HttpServlet {
 			 while(rs0.next()) {			//running loop for users
 				
 				int u= rs0.getInt("id"); 
-				st=conn.createStatement();
-
-				String vuser="select username from users where users.id='"+u+"'";
-				ResultSet rs1=st.executeQuery(vuser);
-				
-				String user= rs1.getString(1); //plzz check this line
-				
-				System.out.println(user);
+				String user=rs0.getString(2);
+							
 				String over="select due_date from invoices where invoices.user_id='"+u+"'"; //getting his all invoice duedate
 				
 				stm=conn.createStatement();
@@ -62,15 +56,14 @@ public class maildata extends HttpServlet {
 					
 					String b=sdf.format(d); //formatting date
 				
-					System.out.println(d);
-				    if(b.compareTo(a)<0) { //comparing to current date
+					    if(b.compareTo(a)<0) { //comparing to current date
 				    	
 				    	String sub="your invoice over its due date";
 				    	String cont=" you are requested to pay your invoice on time else interest will be charges accordingly.";
 				    	javamail.msend(user,sub,cont);
 				    	
-				    							}		
-									}
+				    				   }		
+						      }
 				rs2_1.close();
 			    			}
 			rs0.close();
