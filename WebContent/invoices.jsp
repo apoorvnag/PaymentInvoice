@@ -21,13 +21,18 @@ System.out.println("a");
 	               int n = re.getInt("id");
 	               int s = re.getInt("user_id");
 	               String nm = re.getString("Status");
-	               out.println("<tr><td>" + n + "</td><td>" + s + "</td><td>" + nm + "</td></tr>");
+	               String d= re.getString("due_date");
+	               int e = re.getInt("shipment_id");
+	               int f = re.getInt("tos_invoice_id");
+	               int a= re.getInt("amount")
+	               out.println("<tr><td>" + n + "</td><td>" + s + "</td><td>" + nm + "</td><td>"
+	               + d + "</td><td>"+e+"</td><td"+f +"</td><td>"+a+"</td></tr>");
 	           }
 	           con.close();
 	           
 	    	 re.next();
 	    	 out.println(re.getInt(1)+" "+ re.getInt(2)+ " "+ re.getString(3)+" "+ re.getString(4)
-	    	 +" "+re.getInt(5)+""+re.getInt(6));
+	    	 +" "+re.getInt(5)+""+re.getInt(6)+""+ re.getInt(7));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
