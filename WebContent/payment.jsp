@@ -27,7 +27,7 @@ if (username == null || username.isEmpty()){
 <div style="display: none;">
 <form style='display: hidden' name="razorpayForm" action="http://localhost:8080/PaymentInvoice/payment_success.jsp" method="POST">
 <script
-    src="https://checkout.razorpay.com/v1/checkout.js"
+    data-src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="rzp_test_25DvslaTSjz9fD"
     data-amount="20000"
     data-currency="INR"
@@ -41,6 +41,7 @@ if (username == null || username.isEmpty()){
     data-prefill.contact="9999999999"
     data-theme.color="#F37254"
     id='myscript'
+    onload="clickPay()"
 ></script>
 <input type="hidden" custom="Hidden Element" name="hidden">
 </form>
@@ -55,28 +56,38 @@ function initiate(){
 		
 		return false;
 	}
-$.ajax({
-	'url': 'Payment',
-	'method': 'POST',
-	'data': {
-		'amount': $('#amount').val()	
-	},
-	'success': function(data){
-		console.log(data);
-		var order_id = data.orderId;
-		var amount=data.amount;
-		var currency=data.currency;
-		$('#myscript').attr('data-order_id', order_id);
-		$('#myscript').attr('data-amount', amount*100);
-		$('#myscript').attr('data-currency', currency);
-		
-		$('.razorpay-payment-button').click();
-	},
-	'error': function(error){
-		console.log(error);
-		alert('technical error');
-	}
+	var amount=parseInt($('#amount').val())*100;
+	$.ajax({
+		'url': 'Payment',
+		'method': 'POST',
+		'data': {
+			'amount': amount
+		},
+		'success': function(data){
+			console.log(data);
+			data=JSON.parse(data);
+			var order_id = data.orderId;
+			var amount=data.amount;
+			var currency=data.currency;
+			
+			$('#myscript').attr('data-order_id', order_id);
+			$('#myscript').attr('data-amount', parseInt(amount)*100);
+			$('#myscript').attr('data-currency', currency);
+			
+			var source = $('#myscript').attr('data-src');
+			$('#myscript').attr('src', source);
+			
+			$('.razorpay-payment-button').click();
+		},
+		'error': function(error){
+			console.log(error);
+			alert('technical error');
+		}
 	});
+}
+
+function clickPay(){
+	$('.razorpay-payment-button').click();
 }
 </script>
 </body>
