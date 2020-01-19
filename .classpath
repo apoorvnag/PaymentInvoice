@@ -8,7 +8,15 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/Users/apoorv/Downloads/javax.servlet-api-3.0.1.jar"/>
-	<classpathentry kind="lib" path="/Users/apoorv/Downloads/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="src/jars/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="src/jars/javax.servlet-3.0.jar"/>
+	<classpathentry kind="lib" path="src/razorpay_jars/commons-codec-1.11.jar" sourcepath="/Users/apoorv/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11-sources.jar"/>
+	<classpathentry kind="lib" path="src/razorpay_jars/commons-lang3-3.7.jar"/>
+	<classpathentry kind="lib" path="src/razorpay_jars/commons-text-1.3.jar"/>
+	<classpathentry kind="lib" path="src/razorpay_jars/json-20180130.jar"/>
+	<classpathentry kind="lib" path="src/razorpay_jars/logging-interceptor-3.10.0.jar"/>
+	<classpathentry kind="lib" path="src/razorpay_jars/okhttp-3.10.0.jar"/>
+	<classpathentry kind="lib" path="src/razorpay_jars/okio-1.14.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
