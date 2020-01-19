@@ -64,7 +64,7 @@ public class Payment extends HttpServlet {
 		Long amount = Long.parseLong(request.getParameter("amount"));
 		System.out.println(amount);
 		String currency="INR";
-		String invoiceId="I1011";
+		String invoiceId="I10112";
 		String paymentCapture = "1";
 		
 		String credential = Credentials.basic(keyId, secretKey);
@@ -107,8 +107,14 @@ public class Payment extends HttpServlet {
         	e.printStackTrace();
         }
         
-//		response.getWriter().append("{\"message\": \"Success"+api_response_string.toString()+"\"}");
-		response.getWriter().append(model.getId());
+		response.getWriter().append(
+				"{"+
+					"\"message\": \"Success!!\""+","+
+					"\"orderId\": \""+model.getId()+"\","+
+					"\"amount\": "+model.getAmount()+","+
+					"\"currency\": \""+model.getCurrency()+"\""+
+				"}");
+//		response.getWriter().append(model.getId());
 	}
 
 }

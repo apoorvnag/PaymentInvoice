@@ -11,23 +11,25 @@
 <div style='text-align:center;'>
 <form name='paymentform' onsubmit="return false;">
 
-Amount: <input type='number' min='0' id='amount' />
-User Id: <input type='hidden' value='1' id='userid'/>
+Amount to be paid: 450  <input type='hidden' min='0' id='amount' value=450 />
 <button onclick="initiate();">Pay</button>
 </form>
 
 
 <%
+//
 String username = (String)session.getAttribute("username");
-if (username.isEmpty()){
+if (username == null || username.isEmpty()){
+	//
 	username="user";
 }
 %>
+<div style="display: none;">
 <form style='display: hidden' name="razorpayForm" action="http://localhost:8080/PaymentInvoice/payment_success.jsp" method="POST">
 <script
     src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="rzp_test_25DvslaTSjz9fD"
-    data-amount="50000"
+    data-amount="20000"
     data-currency="INR"
     data-order_id=""
     data-buttontext="Pay with Razorpay"
@@ -42,6 +44,7 @@ if (username.isEmpty()){
 ></script>
 <input type="hidden" custom="Hidden Element" name="hidden">
 </form>
+</div>
 
 </div>
 <script>
@@ -58,12 +61,20 @@ $.ajax({
 	'data': {
 		'amount': $('#amount').val()	
 	},
-	'success': function(order_id){
-		console.log(order_id);
+	'success': function(data){
+		console.log(data);
+		var order_id = data.orderId;
+		var amount=data.amount;
+		var currency=data.currency;
 		$('#myscript').attr('data-order_id', order_id);
+		$('#myscript').attr('data-amount', amount*100);
+		$('#myscript').attr('data-currency', currency);
+		
+		$('.razorpay-payment-button').click();
 	},
 	'error': function(error){
 		console.log(error);
+		alert('technical error');
 	}
 	});
 }
