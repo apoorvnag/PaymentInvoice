@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Forgot Password</title>
+<title>Forgot Password | Adani Ports</title>
 </head>
 <body>
 <jsp:include page='header.jsp'/>

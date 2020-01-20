@@ -20,6 +20,20 @@ SET NAMES utf8mb4;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+# Dump of table admin
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `admin`;
+
+CREATE TABLE `admin` (
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `cout` bigint(20) DEFAULT NULL,
+  `intrest_loss` bigint(20) DEFAULT NULL,
+  `rev_gen` bigint(20) DEFAULT NULL,
+  `rev_loss` bigint(20) DEFAULT NULL
+); ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 # Dump of table company
 # ------------------------------------------------------------
@@ -209,3 +223,8 @@ insert into products values (4002,1,1,202,'The Bugatti La Voiture Noire',2,15,30
 insert into products values (4003,1,1,203,'Passion Diamond Shoes',5,5,25);
 insert into products values (4003,1,1,204,'Artwork Of A Dead Shark',1,100,100);
 insert into products values (4003,1,1,205,'The History Supreme Yacht',1,34,34);
+
+# Insertion of table admin
+# ------------------------------------------------------------
+
+insert into admin values ('superadmin','adminsuper$$',0,0,0,0);
