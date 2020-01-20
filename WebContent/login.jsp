@@ -17,7 +17,7 @@
     rs = st.executeQuery("select username from users where username='" + username + "' and password='" + password + "'");
     if (rs.next()) {
         session.setAttribute("username", username);
-        response.sendRedirect("invoices.jsp");
+        response.sendRedirect("success.jsp");
     } else {
         out.println("Invalid password <a href='index.jsp'>try again</a>\n\n");
         out.println("<a href='forgot.jsp'>Forgot Password</a>");
