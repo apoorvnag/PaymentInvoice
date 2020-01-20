@@ -19,8 +19,14 @@
         session.setAttribute("username", username);
         response.sendRedirect("success.jsp");
     } else {
-        out.println("Invalid password <a href='index.jsp'>try again</a>\n\n");
+    	rs = st.executeQuery("select username from admin where username='" + username + "' and password='" + password + "'");
+    	if (rs.next()) {
+            session.setAttribute("username", username);
+            response.sendRedirect("adminsuccess.jsp");
+        } else {
+    	out.println("Invalid password <a href='index.jsp'>try again</a>\n\n");
         out.println("<a href='forgot.jsp'>Forgot Password</a>");
+        }
     }
 %>
 </body>
