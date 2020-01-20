@@ -8,6 +8,7 @@
 </head>
 <body>
 <jsp:include page='header.jsp'/>
+<div class="container">
 <h1>Contact Us</h1>
 <div class="jumbotron">
   <h1>Head Office</h1>
@@ -28,6 +29,7 @@ Adani House, Mithakhali Six Roads, Navarangpura, Ahmedabad 380 009
 Tel : +91 79 2656 5555
 Fax : +91 79 2555 6490</p>
   <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+</div>
 </div>
 </body>
 </html>

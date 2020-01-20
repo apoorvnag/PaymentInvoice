@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <title>Invoices | Adani Ports</title>
         <style>
         .btn {
   background-color: #4CAF50;
