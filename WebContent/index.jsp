@@ -7,10 +7,10 @@
     </head>
     <body>
     <jsp:include page='header.jsp'/>
-        <form method="post" action="login.jsp">
+        <form method="post" action="login.jsp" class="form-horizontal">
             <center>
-            <table border="1" width="30%" cellpadding="3">
-                <thead>
+            <table width="30%" cellpadding="3">
+                <thead class="form-group">
                     <tr>
                         <th colspan="2">Login Here</th>
                     </tr>
@@ -18,18 +18,20 @@
                 <tbody>
                     <tr>
                         <td>User Name</td>
-                        <td><input type="text" name="username" value="" /></td>
+                        <td><input type="text" name="username" value="" class="form-control" style="margin: 10px"/></td>
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><input type="password" name="password" value="" /></td>
+                        <td><input type="password" name="password" value="" class="form-control" style="margin: 10px"/></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Login" /></td>
-                        <td><input type="reset" value="Reset" /></td>
+                        
+                        <td colspan="2" style="text-align: right;">
+							<input type="submit" value="Login" class="btn btn-default"/>
+                        	<input type="reset" value="Reset" class="btn btn-default"/></td>
                     </tr>
                     <tr>
-                        <td colspan="2">Yet Not Registered!! <a href="reg.jsp">Register Here</a></td>
+                        <td colspan="2" style="margin: 10px;">Yet Not Registered!! <a href="reg.jsp" style="margin: 10px;">Register Here</a></td>
                     </tr>
                 </tbody>
             </table>

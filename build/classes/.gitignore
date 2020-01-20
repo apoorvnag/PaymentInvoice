@@ -1,5 +1,7 @@
 /apis/
+/com/
+/commands/
+/invoices.class
 /mail_jdbc/
-/migrations/
-/repositories/
 /models/
+/repositories/
