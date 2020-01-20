@@ -39,7 +39,7 @@ System.out.println("a");
 	               int f = re.getInt("tos_invoice_id");
 	               int a= re.getInt("amount");
 	               out.println("<tr><td>" + n + "</td><td>" + s + "</td><td>" + nm + "</td><td>"
-	               + d + "</td><td>"+e+"</td><td"+f +"</td><td>"+a+"</td></tr>");
+	               + d + "</td><td>"+e+"</td><td>"+f +"</td><td>"+a+"</td></tr>");
 	           }
 	           con.close();
 	           
