@@ -25,15 +25,25 @@
       </button>
       <a class="navbar-brand" href="index.jsp" style="padding: 10px;"><img src="img/logo.png" height="100%"/></a>
     </div>
+    <% String username=(String)session.getAttribute("username"); %>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav">
+	        <%
+        	if (username!=null){%>
+        		<li><a href='invoices.jsp'>Invoices</a></li>
+				<li><a href='amount.jsp'>Amount Pending</a></li>
+        		
+        	<% }
+        %>
+      </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li><a href="contact_us.jsp">Contact Us</a></li>
-        <% String username=(String)session.getAttribute("username"); 
+        <%
         	if (username!=null){%>
-        		<li><a href="logout.jsp">Log Out</a></li>		
+        		<li><a href="logout.jsp">Log Out</a></li>
         	<% }
         %>
       </ul>
