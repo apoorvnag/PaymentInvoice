@@ -31,7 +31,11 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li><a href="contact_us.jsp">Contact Us</a></li>
-        <li><a href="#">Log Out</a></li>
+        <% String username=(String)session.getAttribute("username"); 
+        	if (username!=null){%>
+        		<li><a href="logout.jsp">Log Out</a></li>		
+        	<% }
+        %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

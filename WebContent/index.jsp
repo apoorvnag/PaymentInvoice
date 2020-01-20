@@ -27,7 +27,7 @@
                     <tr>
                         
                         <td colspan="2" style="text-align: right;">
-							<input type="submit" value="Login" class="btn btn-default"/>
+							<input type="submit" value="Login" class="btn btn-primary"/>
                         	<input type="reset" value="Reset" class="btn btn-default"/></td>
                     </tr>
                     <tr>
