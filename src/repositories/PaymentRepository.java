@@ -16,7 +16,7 @@ public class PaymentRepository {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/g","tripoto_admin","tripoto123");
+			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/g","root","AmitKaushik$");
 			System.out.println("---------");
 			
 			
@@ -62,7 +62,7 @@ public class PaymentRepository {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/g","tripoto_admin","tripoto123");
+			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/g","root","AmitKaushik$");
 			System.out.println("---------");
 			
 			Random rand = new Random(); 

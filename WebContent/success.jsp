@@ -18,6 +18,7 @@ You are not logged in<br/>
 <font size=10>Welcome</font> 
 <a href='logout.jsp'>Log out</a>
 <a href='invoices.jsp'>Invoices</a>
+<a href='amount.jsp'>Amount Pending</a>
 <%
     }
 %>

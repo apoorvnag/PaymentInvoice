@@ -11,21 +11,21 @@
 <%
 System.out.println("a");
  	 try {
+ 		    String pen = "pending";
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/g","root","AmitKaushik$");
 	    	 Statement st = con.createStatement();
-	    	 ResultSet re = st.executeQuery("Select * from payments where (amount =3000)");
+	    	 ResultSet re = st.executeQuery("Select * from invoices where status='"+pen+"'");
 	           out.println("<tr><th>Id</th><th>Transaction ID</th><th>Order ID</th><th>Pending Amount</th><th>Status</th><th>Invoice ID</th><th>Mode</th><tr>");
 	           while (re.next())
 	           {
 	               int n = re.getInt("id");
-	               int s = re.getInt("txn_id");
 	               String nm = re.getString("order_id");
 	               int d= re.getInt("amount");
 	               String e = re.getString("status");
 	               int f = re.getInt("invoice_id");
 	               String a= re.getString("amount");
-	               out.println("<tr><td>" + n + "</td><td>" + s + "</td><td>" + nm + "</td><td>"
+	               out.println("<tr><td>" + n + "</td><td>"  + nm + "</td><td>"
 	               + d + "</td><td>"+e+"</td><td"+f +"</td><td>"+a+"</td></tr>");
 	           }
 	           con.close();

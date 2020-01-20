@@ -1,4 +1,5 @@
 <%@ page import ="java.sql.*" contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="mail_jdbc.javamail" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,12 +20,13 @@
     String contact = request.getParameter("contact");
     String address = request.getParameter("address");
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/apn","root","");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/g","root","AmitKaushik$");
     PreparedStatement st = con.prepareStatement("insert into users (username, password, verification_key, handle, contact, address)" + "values ('" + username + "','" + password + "','" + verification_key + "','" + handle + "','" + contact + "','" + address + "')");
     //ResultSet rs;
     int i = st.executeUpdate();
     if (i > 0) {
-        
+    	mail_jdbc.javamail.msend(username,"Successfull","you are successfully registered now");
+
         response.sendRedirect("welcome.jsp");
        
     } else {

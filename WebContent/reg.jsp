@@ -16,15 +16,14 @@
                     </tr>
                 </thead>
                 <tbody>
-<!--                    <tr>
+                    <tr>
                         <td>First Name</td>
                         <td><input type="text" name="fname" value="" /></td>
                     </tr>
                     <tr>
                         <td>Last Name</td>
                         <td><input type="text" name="lname" value="" /></td>
-                    </tr> -->
-                    
+                    </tr>                    
                     <tr>
                         <td>User Name</td>
                         <td><input type="email" name="username" value="" /></td>
