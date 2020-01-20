@@ -17,7 +17,7 @@
     rs = st.executeQuery("select username from users where username='" + username + "' and password='" + password + "'");
     if (rs.next()) {
         session.setAttribute("username", username);
-        response.sendRedirect("invoices.jsp");
+        response.sendRedirect("success.jsp");
     } else {
     	rs = st.executeQuery("select username from admin where username='" + username + "' and password='" + password + "'");
     	if (rs.next()) {

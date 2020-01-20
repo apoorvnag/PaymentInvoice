@@ -7,7 +7,9 @@
 </head>
 <body>
 <jsp:include page='header.jsp'/>
-    <table border="1">
+<div class="container">
+	<h1 class="page-header">Invoices</h1>
+    <table border="1" style="margin: 0 auto;" class="table table-striped">
 <%
 System.out.println("a");
  	 try {
@@ -43,5 +45,7 @@ System.out.println("a");
  	 
 
 %>
+</table>
+</div>
 </body>
 </html>

@@ -13,7 +13,7 @@
 <div class="container">
 <h1 class="page-header">Payments Report</h1>
 
-    <table border="1" style="margin: auto;" class="table">
+    <table border="1"  style="margin: 0 auto;" class="table table-striped">
 <%
 System.out.println("a");
  	 try {
