@@ -25,6 +25,7 @@
       </button>
       <a class="navbar-brand" href="index.jsp" style="padding: 10px;"><img src="img/logo.png" height="100%"/></a>
     </div>
+    
     <% String username=(String)session.getAttribute("username"); %>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -50,3 +51,4 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<img style="margin: 0 auto; display:block;" src="https://www.adaniports.com/-/media/Project/Ports/Home/stats-bg.png?la=en&hash=804575B31B89B8FFE85C919368C7C650"/>
