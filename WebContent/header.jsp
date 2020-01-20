@@ -51,4 +51,4 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<img style="margin: 0 auto; display:block;" src="https://www.adaniports.com/-/media/Project/Ports/Home/stats-bg.png?la=en&hash=804575B31B89B8FFE85C919368C7C650"/>
+<img style="margin: 0 auto; display:block;" src="img/adani-ships.png"/>
