@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page='header.jsp'/>
+<div class="container">
 <h1 class="page-header">Payments Report</h1>
 
     <table border="1" style="margin: auto;" class="table">
@@ -104,5 +105,6 @@ System.out.println("a");
 
 %>
 </table>
+</div>
 </body>
 </html>

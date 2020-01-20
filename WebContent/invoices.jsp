@@ -20,7 +20,9 @@
     </head>
     <body>
     <jsp:include page='header.jsp'/>
-    <table border="1">
+    <div class="container">
+    <h1 class="page-header">Invoices</h1>
+    <table border="1" style="margin: 0 auto;" class="table table-striped">
 <%
 System.out.println("a");
  	 try {
@@ -39,7 +41,7 @@ System.out.println("a");
 	               int f = re.getInt("tos_invoice_id");
 	               int a= re.getInt("amount");
 	               out.println("<tr><td>" + n + "</td><td>" + s + "</td><td>" + nm + "</td><td>"
-	               + d + "</td><td>"+e+"</td><td"+f +"</td><td>"+a+"</td></tr>");
+	               + d + "</td><td>"+e+"</td><td>"+f +"</td><td>"+a+"</td></tr>");
 	           }
 	           con.close();
 	           
@@ -57,6 +59,8 @@ System.out.println("a");
 
 %>
 </table>
+
 <a href="payment.jsp"><input  type="submit" value="Continue to checkout" class="btn"></a>
+</div>
 </body>
 </html>
